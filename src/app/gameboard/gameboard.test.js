@@ -24,3 +24,16 @@ test('Ship position fits game board', () => {
     expect(gameBoard1.positionShip(5, 9, 'carrier')).toBe(false);
     expect(gameBoard1.positionShip(0, 4, 'carrier')).toBe(true);
 });
+
+test('Received attack hit ship', () => {
+    const gameBoard1 = createGameBoard();
+    gameBoard1.positionShip(0, 1, 'destroyer');
+
+    expect(gameBoard1.ships.destroyer.healthPoints).toBe(2);
+    expect(gameBoard1.receiveAttack(0, 1)).toBe(true);
+    expect(gameBoard1.ships.destroyer.healthPoints).toBe(1);
+    expect(gameBoard1.receiveAttack(0, 1)).toBe(false);
+    expect(gameBoard1.ships.destroyer.healthPoints).toBe(1);
+    expect(gameBoard1.receiveAttack(0, 2)).toBe(true);
+    expect(gameBoard1.ships.destroyer.healthPoints).toBe(0);
+});

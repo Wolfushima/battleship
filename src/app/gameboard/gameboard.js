@@ -26,11 +26,28 @@ export default function createGameBoard() {
             }
             return true;
         },
+
         positionShip(row, collumn, ship) {
             if (this.isCoordinateAvailable(row, collumn, ship)) {
                 for (let i = 0; i < ships[ship].length; i += 1) {
                     gameBoard[row][collumn + i] = ship;
                 }
+                return true;
+            }
+            return false;
+        },
+
+        isShip(coordinate) {
+            if (Object.prototype.hasOwnProperty.call(ships, coordinate)) {
+                return true;
+            }
+            return false;
+        },
+
+        receiveAttack(row, collumn) {
+            if (this.isShip(gameBoard[row][collumn])) {
+                ships[gameBoard[row][collumn]].hit();
+                gameBoard[row][collumn] = 'hit';
                 return true;
             }
             return false;
