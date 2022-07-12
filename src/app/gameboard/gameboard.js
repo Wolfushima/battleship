@@ -50,6 +50,7 @@ export default function createGameBoard() {
                 gameBoard[row][collumn] = 'hit';
                 return true;
             }
+            gameBoard[row][collumn] = 'miss';
             return false;
         },
     };
