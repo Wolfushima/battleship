@@ -37,3 +37,42 @@ test('Received attack hit ship', () => {
     expect(gameBoard1.receiveAttack(0, 2)).toBe(true);
     expect(gameBoard1.ships.destroyer.healthPoints).toBe(0);
 });
+
+test('Are positioned ships sunked?', () => {
+    const gameBoard1 = createGameBoard();
+    gameBoard1.positionShip(0, 1, 'destroyer');
+    gameBoard1.positionShip(1, 1, 'submarine');
+    gameBoard1.positionShip(2, 1, 'cruiser');
+    gameBoard1.positionShip(3, 1, 'battleship');
+    gameBoard1.positionShip(4, 1, 'carrier');
+
+    gameBoard1.receiveAttack(0, 1);
+    gameBoard1.receiveAttack(0, 2);
+
+    gameBoard1.receiveAttack(1, 1);
+    gameBoard1.receiveAttack(1, 2);
+    gameBoard1.receiveAttack(1, 3);
+
+    gameBoard1.receiveAttack(2, 1);
+    gameBoard1.receiveAttack(2, 2);
+    gameBoard1.receiveAttack(2, 3);
+
+    gameBoard1.receiveAttack(3, 1);
+    gameBoard1.receiveAttack(3, 2);
+    gameBoard1.receiveAttack(3, 3);
+    gameBoard1.receiveAttack(3, 4);
+
+    gameBoard1.receiveAttack(4, 1);
+    gameBoard1.receiveAttack(4, 2);
+    gameBoard1.receiveAttack(4, 3);
+    gameBoard1.receiveAttack(4, 4);
+    gameBoard1.receiveAttack(4, 5);
+
+    expect(gameBoard1.ships.destroyer.healthPoints).toBe(0);
+    expect(gameBoard1.ships.submarine.healthPoints).toBe(0);
+    expect(gameBoard1.ships.cruiser.healthPoints).toBe(0);
+    expect(gameBoard1.ships.battleship.healthPoints).toBe(0);
+    expect(gameBoard1.ships.carrier.healthPoints).toBe(0);
+
+    expect(gameBoard1.areShipsSunk()).toBe(true);
+});

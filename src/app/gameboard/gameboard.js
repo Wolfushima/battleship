@@ -53,5 +53,9 @@ export default function createGameBoard() {
             gameBoard[row][collumn] = 'miss';
             return false;
         },
+
+        areShipsSunk() {
+            return Object.values(ships).every((ship) => ship.sunk === true);
+        },
     };
 }
