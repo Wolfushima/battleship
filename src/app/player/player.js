@@ -3,11 +3,11 @@ import createGameBoard from '../gameboard/gameboard';
 export default function createPlayer(name) {
     return {
         name,
-        gameBoard: createGameBoard(),
+        playerGameBoard: createGameBoard(),
         turn: false,
 
-        positionShip(row, collumn, ship) {
-            return this.gameBoard.positionShip(row, collumn, ship);
+        positionShip(row, collumn, axis, ship) {
+            return this.playerGameBoard.positionShip(row, collumn, axis, ship);
         },
     };
 }

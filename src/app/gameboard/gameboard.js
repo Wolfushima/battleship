@@ -17,20 +17,38 @@ export default function createGameBoard() {
     return {
         gameBoard,
         ships,
-        isCoordinateAvailable(row, collumn, ship) {
-            for (let i = 0; i < ships[ship].length; i += 1) {
-                if (gameBoard[row][collumn + i] !== undefined
-                || collumn + i > gameBoard[collumn].length) {
-                    return false;
+        isCoordinateAvailable(row, collumn, axis, ship) {
+            if (axis === 'x') {
+                for (let i = 0; i < ships[ship].length; i += 1) {
+                    if (collumn + i > 9 || collumn + i < 0
+                        || gameBoard[row][collumn + i] !== undefined) {
+                        return false;
+                    }
+                }
+            }
+            if (axis === 'y') {
+                for (let i = 0; i < ships[ship].length; i += 1) {
+                    if (row + i > 9 || row + i < 0
+                        || gameBoard[row + i][collumn] !== undefined) {
+                        return false;
+                    }
                 }
             }
             return true;
         },
 
-        positionShip(row, collumn, ship) {
-            if (this.isCoordinateAvailable(row, collumn, ship)) {
+        positionShip(row, collumn, axis, ship) {
+            if (row > 9 || collumn > 9 || row < 0 || collumn < 0) {
+                return false;
+            }
+            if (this.isCoordinateAvailable(row, collumn, axis, ship)) {
                 for (let i = 0; i < ships[ship].length; i += 1) {
-                    gameBoard[row][collumn + i] = ship;
+                    if (axis === 'x') {
+                        gameBoard[row][collumn + i] = ship;
+                    }
+                    if (axis === 'y') {
+                        gameBoard[row + i][collumn] = ship;
+                    }
                 }
                 return true;
             }
