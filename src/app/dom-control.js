@@ -27,13 +27,28 @@ const domControl = {
         for (let i = 0; i < player.playerGameBoard.gameBoard.length; i += 1) {
             const indexOfShips = player.playerGameBoard.gameBoard[i].reduce((acc, curr, index) => {
                 if (curr === 'destroyer' || curr === 'submarine' || curr === 'cruiser' || curr === 'battleship' || curr === 'carrier') {
-                    acc.push(index);
+                    acc.push([index, curr]);
                 }
                 return acc;
             }, []);
+            console.log(i, indexOfShips);
 
             indexOfShips.forEach((index) => {
-                playerGameBoardElement.children[index + (i * 10)].style.backgroundColor = 'red';
+                if (index[1] === 'destroyer') {
+                    playerGameBoardElement.children[index[0] + (i * 10)].classList.add('gameboard__destroyer');
+                }
+                if (index[1] === 'submarine') {
+                    playerGameBoardElement.children[index[0] + (i * 10)].classList.add('gameboard__submarine');
+                }
+                if (index[1] === 'cruiser') {
+                    playerGameBoardElement.children[index[0] + (i * 10)].classList.add('gameboard__cruiser');
+                }
+                if (index[1] === 'battleship') {
+                    playerGameBoardElement.children[index[0] + (i * 10)].classList.add('gameboard__battleship');
+                }
+                if (index[1] === 'carrier') {
+                    playerGameBoardElement.children[index[0] + (i * 10)].classList.add('gameboard__carrier');
+                }
             });
         }
     },
