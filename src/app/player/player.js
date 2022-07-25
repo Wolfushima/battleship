@@ -6,6 +6,19 @@ export default function createPlayer(name) {
         playerGameBoard: createGameBoard(),
         turn: false,
 
+        receiveAttack(row, collumn) {
+            return this.playerGameBoard.receiveAttack(row, collumn);
+        },
+
+        attack(player, row, collumn) {
+            player.receiveAttack(row, collumn);
+        },
+
+        attackRandomly(player) {
+            const getRandomInt = (maxNumber) => Math.floor(Math.random() * maxNumber);
+            player.receiveAttack(getRandomInt(10), getRandomInt(10));
+        },
+
         positionShip(row, collumn, axis, ship) {
             return this.playerGameBoard.positionShip(row, collumn, axis, ship);
         },
