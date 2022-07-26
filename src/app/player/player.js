@@ -6,17 +6,25 @@ export default function createPlayer(name) {
         playerGameBoard: createGameBoard(),
         turn: false,
 
+        updateTurn(boolean) {
+            this.turn = boolean;
+        },
+
         receiveAttack(row, collumn) {
             return this.playerGameBoard.receiveAttack(row, collumn);
         },
 
         attack(player, row, collumn) {
+            this.turn = false;
             player.receiveAttack(row, collumn);
+            player.updateTurn(true);
         },
 
         attackRandomly(player) {
+            this.turn = false;
             const getRandomInt = (maxNumber) => Math.floor(Math.random() * maxNumber);
             player.receiveAttack(getRandomInt(10), getRandomInt(10));
+            player.updateTurn(true);
         },
 
         positionShip(row, collumn, axis, ship) {
