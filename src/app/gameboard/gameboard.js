@@ -63,6 +63,9 @@ export default function createGameBoard() {
         },
 
         receiveAttack(row, collumn) {
+            if (gameBoard[row][collumn] === 'hit' || gameBoard[row][collumn] === 'miss') {
+                return false;
+            }
             if (this.isShip(gameBoard[row][collumn])) {
                 ships[gameBoard[row][collumn]].hit();
                 gameBoard[row][collumn] = 'hit';
