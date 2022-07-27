@@ -5,6 +5,7 @@ export default function createPlayer(name) {
         name,
         playerGameBoard: createGameBoard(),
         turn: false,
+        randomAttackCoords: [],
 
         updateTurn(boolean) {
             this.turn = boolean;
@@ -21,9 +22,19 @@ export default function createPlayer(name) {
         },
 
         attackRandomly(player) {
-            this.turn = false;
             const getRandomInt = (maxNumber) => Math.floor(Math.random() * maxNumber);
-            player.receiveAttack(getRandomInt(10), getRandomInt(10));
+            let row = getRandomInt(10);
+            let collumn = getRandomInt(10);
+
+            while (this.randomAttackCoords.includes(`${row}, ${collumn}`)) {
+                row = getRandomInt(10);
+                collumn = getRandomInt(10);
+            }
+
+            this.randomAttackCoords.push(`${row}, ${collumn}`);
+            this.turn = false;
+
+            player.receiveAttack(row, collumn);
             player.updateTurn(true);
         },
 
