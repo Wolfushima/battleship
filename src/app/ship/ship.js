@@ -21,5 +21,10 @@ export default function createShip(length) {
         isSunk() {
             return this.sunk;
         },
+
+        resetShip() {
+            this.healthPoints = length;
+            this.sunk = false;
+        },
     };
 }
