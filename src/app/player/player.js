@@ -95,5 +95,9 @@ export default function createPlayer(name) {
                 }
             });
         },
+
+        resetRandomAttackCoords() {
+            this.randomAttackCoords = [];
+        },
     };
 }
