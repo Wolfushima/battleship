@@ -78,5 +78,18 @@ export default function createGameBoard() {
         areShipsSunk() {
             return Object.values(ships).every((ship) => ship.sunk === true);
         },
+
+        emptyGameBoard() {
+            for (let i = 0; i < this.gameBoard.length; i += 1) {
+                this.gameBoard[i] = new Array(10);
+            }
+        },
+
+        resetGameBoard() {
+            this.emptyGameBoard();
+            Object.values(ships).forEach((ship) => {
+                ship.resetShip();
+            });
+        },
     };
 }
