@@ -1,7 +1,7 @@
-body {
-    background-color: rgb(60, 60, 217);
-}
+@import 'variables';
+@import 'mixins';
 
-p {
-    color: rgb(26, 141, 241);
-}
+@import 'globals';
+@import 'header';
+@import 'footer';
+@import 'gameBoards';

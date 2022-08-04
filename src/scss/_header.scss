@@ -1,0 +1,16 @@
+header {
+    position: relative;
+    min-height: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        color: rgb(26, 141, 241);
+        letter-spacing: 7px;
+        background: -webkit-linear-gradient(rgb(42, 112, 205), rgb(42, 151, 246));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}

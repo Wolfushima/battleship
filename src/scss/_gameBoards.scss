@@ -1,0 +1,140 @@
+.gameboard {
+    display: grid;
+    width: 100%;
+    grid-template: repeat(2, auto)/1fr 1fr;
+    justify-items: center;
+    align-content: center;
+    background-color: black;
+    padding: 10px;
+    border-bottom: 1px dotted rgba(255, 222, 254, 0.48);
+    border-top: 1px dotted rgba(255, 222, 254, 0.48);
+
+
+    @include breakpoint-down(small) {
+        grid-template: repeat(2, auto)/1fr;
+        gap: 30px;
+    }
+
+    .gameboard__player,
+    .gameboard__computer {
+        display: grid;
+        grid-template: repeat(10, auto)/repeat(10, auto);
+        justify-content: center;
+        align-items: center;
+        min-height: max-content;
+        padding: 15px;
+    }
+    .player-title,
+    .computer-title {
+        text-align: center;
+        color: $color-neutral-700;
+        font-size: $font-med;
+        padding-bottom: 10px;
+    }
+
+    .player-title::after {
+        content: 'Player';
+    }
+
+    .computer-title::after {
+        content: 'Computer';
+    }
+
+    .gameboard__player {
+        background-color: #0d253f;
+        border: 1px solid hsla(240, 100%, 50%, 0.5);
+
+        .cell {
+            pointer-events: none;
+        }
+    }
+
+    .gameboard__computer {
+        background-color: #3f0d0d;
+        border: 1px solid hsla(0, 100%, 50%, 0.5);
+
+        .cell {
+            background: rgb(16,150,117);
+            background: radial-gradient(circle, rgba(15, 184, 142, 0.346) 0%, rgba(0, 255, 247, 0.165) 100%);
+            border: 1px dotted #2fb392fa;
+        }
+        .gameboard__hit {
+            background: red;
+            background: radial-gradient(circle, rgba(255,0,0,0.8149757705816701) 0%, rgba(0,0,0,1) 100%);
+            filter: grayscale(90%);
+            filter: contrast(none);
+            border: none;
+        }
+    }
+
+    .cell {
+        cursor: pointer;
+        background: hsl(165, 81%, 33%);
+        background: radial-gradient(circle, hsla(165, 85%, 39%, 0.346) 0%, rgba(0, 255, 247, 0.165) 100%);
+
+        width: 23px;
+        height: 23px;
+        border: 1px dotted #2fb392fa;
+
+        &:hover {
+            background: hsl(165, 81%, 33%);
+            background: radial-gradient(circle, hsla(165, 85%, 40%, 0.446) 0%, hsla(178, 100%, 70%, 0.165) 100%);
+        }
+    }
+
+    .gameboard__destroyer {
+        background: rgb(174, 0, 255);
+        background: radial-gradient(circle, rgb(174, 0, 255) 0%, rgba(0,0,0,1) 100%);
+        filter: grayscale(80%);
+        filter: contrast(100%);
+        border: none;
+    }
+    .gameboard__submarine {
+        background: rgb(40, 237, 5);
+        background: radial-gradient(circle, rgb(40, 237, 5) 0%, rgba(0,0,0,1) 100%);
+        filter: grayscale(80%);
+        filter: contrast(100%);
+        border: none;
+    }
+    .gameboard__cruiser {
+        background: rgb(0, 68, 255);
+        background: radial-gradient(circle, rgb(0, 68, 255) 0%, rgba(0,0,0,1) 100%);
+        filter: grayscale(80%);
+        filter: contrast(100%);
+        border: none;
+    }
+    .gameboard__battleship {
+        background: rgb(255, 153, 0);
+        background: radial-gradient(circle, rgb(255, 153, 0) 0%, rgba(0,0,0,1) 100%);
+        filter: grayscale(80%);
+        filter: contrast(100%);
+        border: none;
+    }
+    .gameboard__carrier {
+        background: rgb(255,0,0);
+        background: radial-gradient(circle, rgba(255,0,0,0.8149757705816701) 0%, rgba(0,0,0,1) 100%);
+        filter: grayscale(80%);
+        filter: contrast(100%);
+        border: none;
+    }
+    
+    .gameboard__hit {
+        background: red;
+        background: radial-gradient(circle, rgba(255,0,0,0.8149757705816701) 0%, rgba(0,0,0,1) 100%);
+        filter: grayscale(90%);
+        filter: contrast(none);
+        border: none;
+        pointer-events: none;
+    }
+    .gameboard__miss {
+        filter: blur(5px);
+        border: none;
+        pointer-events: none;
+    }
+    
+}
+
+
+
+
+

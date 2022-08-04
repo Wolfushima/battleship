@@ -1,0 +1,48 @@
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    min-width: min-content;
+    background-color: $color-neutral-100;
+    font-family: 'Iceberg', cursive;
+}
+
+main {
+    min-width: 100%;
+    min-height: fit-content;
+    padding-bottom: 50px;
+}
+
+.resetgame-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,33,133,1) 42%, rgba(0,212,255,1) 100%);
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    .resetgame-btn {
+        font-family: 'Iceberg', cursive;
+        padding: 3px;
+        outline: none;
+        border: 1px solid rgb(190, 4, 190);
+        background-color: hsl(0, 0%, 90%);
+        border-radius: 2px;
+
+        &:hover {
+            background-color: hsl(0, 0%, 95%);
+        }
+    }
+}
