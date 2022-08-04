@@ -1,12 +1,30 @@
 const domControl = {
     gameBoardAttacksCoords: { row: null, collumn: null },
+
     createPlayerGameBoardElements: () => {
         const gameBoardElement = document.querySelector('.gameboard');
         const player1GameBoardElement = domControl.createGameBoardGridElement(10, 'player');
         const player2GameBoardElement = domControl.createGameBoardGridElement(10, 'computer');
 
-        gameBoardElement.appendChild(player1GameBoardElement);
-        gameBoardElement.appendChild(player2GameBoardElement);
+        const player1TitleElement = document.createElement('div');
+        player1TitleElement.classList.add('player-title');
+
+        const player2TitleElement = document.createElement('div');
+        player2TitleElement.classList.add('computer-title');
+
+        const player1ContainerElement = document.createElement('div');
+        const player2ContainerElement = document.createElement('div');
+        player1ContainerElement.classList.add('player-container');
+        player2ContainerElement.classList.add('computer-container');
+
+        gameBoardElement.appendChild(player1ContainerElement);
+        gameBoardElement.appendChild(player2ContainerElement);
+
+        player1ContainerElement.appendChild(player1GameBoardElement);
+        player2ContainerElement.appendChild(player2GameBoardElement);
+
+        player1ContainerElement.insertBefore(player1TitleElement, player1GameBoardElement);
+        player2ContainerElement.insertBefore(player2TitleElement, player2GameBoardElement);
 
         return {
             player1GameBoardElement,
@@ -38,6 +56,10 @@ const domControl = {
     },
 
     renderShipElements: (player, playerGameBoardElement) => {
+        for (let i = 0; i < playerGameBoardElement.children.length; i += 1) {
+            playerGameBoardElement.children[i].setAttribute('class', 'cell');
+        }
+
         for (let i = 0; i < player.playerGameBoard.gameBoard.length; i += 1) {
             const indexOfShips = player.playerGameBoard.gameBoard[i].reduce((acc, curr, index) => {
                 if (curr === 'destroyer' || curr === 'submarine' || curr === 'cruiser' || curr === 'battleship' || curr === 'carrier') {
